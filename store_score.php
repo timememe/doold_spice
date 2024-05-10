@@ -5,7 +5,7 @@ $data = json_decode(file_get_contents("php://input"), true);
 $userUuid = $data['user_uuid'];
 $gameUuid = $data['game_uuid'];
 $score = $data['score'];
-$token = 'Butgug3Queph';
+$token = 'Butgug3Queph)';
 
 // Отправка данных через cURL на удаленный сервер
 $url = 'https://enjoytomorrow.ge/system/game-log/';
