@@ -91,26 +91,23 @@ window.addEventListener('resize', resizeCanvas, false);
 
 function resizeCanvas() {
   const canvas = document.getElementById('canvas');
-  const widthToHeight = 422 / 552; // Соотношение сторон
+  const aspectRatio = 422 / 552; // Соотношение сторон
+
+  // Вычислите новые размеры с учётом максимально возможного заполнения по высоте или ширине
   var newWidth = window.innerWidth;
   var newHeight = window.innerHeight;
   var newWidthToHeight = newWidth / newHeight;
-  
-  if (newWidthToHeight > widthToHeight) {
-    newWidth = newHeight * widthToHeight;
-    canvas.style.height = newHeight + 'px';
-    canvas.style.width = newWidth + 'px';
+
+  if (newWidthToHeight > aspectRatio) {
+      newWidth = newHeight * aspectRatio;
   } else {
-    newHeight = newWidth / widthToHeight;
-    canvas.style.width = newWidth + 'px';
-    canvas.style.height = newHeight + 'px';
+      newHeight = newWidth / aspectRatio;
   }
-  
+
   canvas.width = newWidth;
   canvas.height = newHeight;
-  
-  // Перерисовываем игровые элементы под новый размер
-  redrawCanvas();
+
+  redrawCanvas(); // Перерисовываем элементы на канвасе
 }
 
 function redrawCanvas() {
