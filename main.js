@@ -10,6 +10,31 @@ window.requestAnimFrame = (function() {
          };
 })();
 
+// Получаем URL из iframe
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const uuid = urlParams.get('uuid'); // uuid теперь содержит ваш UUID
+console.log(uuid);
+
+function sendGameData(score) {
+  const data = { uuid: uuid, score: score };
+
+  fetch('https://enjoytomorrow.ge/game/send_1', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log('Success:', data);
+  })
+  .catch((error) => {
+      console.error('Error:', error);
+  });
+}
+
 let multiply = 4;
 let lastGrassY = 0, lastCloudsY = 0, lastCloudsX = 0, lastFarCloudsY = 0, lastFarCloudsX = 0, lastStageY = 0, lastMountainsY = 0, lastScoreUpdate = -1;
 
@@ -42,7 +67,7 @@ window.addEventListener('resize', resizeCanvas, false);
 
 function resizeCanvas() {
   const canvas = document.getElementById('canvas');
-  const widthToHeight = window.innerWidth / window.innerHeight; //480 / 640; // Соотношение сторон
+  const widthToHeight = 422 / 552; // Соотношение сторон
   var newWidth = window.innerWidth;
   var newHeight = window.innerHeight;
   var newWidthToHeight = newWidth / newHeight;
@@ -93,7 +118,6 @@ function redrawCanvas() {
   player.draw(); // Перерисовка игрока
   platforms.forEach(platform => platform.draw()); // Перерисовка всех платформ
 }
-
 
 
 //Variables for game
@@ -345,6 +369,12 @@ function init() {
     jumpCount = 0;
   
   firstRun = false;
+
+  ////////////////////////////
+
+
+
+  ///////////////////////////
 
   //Function for clearing canvas in each consecutive frame  
   
@@ -645,6 +675,7 @@ function init() {
       showGoMenu();
       hideScore();
       player.isDead = "lol";
+      sendGameData(score);
     }
   }
 

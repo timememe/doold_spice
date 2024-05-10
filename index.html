@@ -12,19 +12,11 @@
   </head>
   <body>
     <div class="container">
-
       <canvas id="canvas">
         Aww, your browser doesn't support HTML5!
       </canvas>
       <button id="leftButton"></button>
       <button id="rightButton"></button>
-      <!--
-      <div id="joystickContainer">
-        <div id="joystickBase">
-          <div id="joystickHandle"></div>
-        </div>
-      </div>
-      -->
 
       <div id="mainMenu" class="popup-container">
         <div class="popup">
@@ -32,22 +24,7 @@
           <p>Use left or right buttons to move your character!</p>
           <button id="playButton" href="javascript:init()">Play</button>
         </div>
-      </div>      
-
-      <!--
-      <div id="mainMenu">
-        <h1>doodle jump</h1>
-        <h3>using HTML5,</h3>
-
-        <p class="info">
-          use
-          <span class="key left">←</span>
-          <span class="key right">→</span>
-          to move and space to (re) start...
-        </p>
-        <a class="button" href="javascript:init()">Play</a>
-      </div>
-      -->
+      </div> 
 
       <div id="gameOverMenu" class="popup-container">
         <div class="popup">
@@ -57,7 +34,7 @@
         </div>
       </div>
 
-      <!-- Preloading image ;) http://i.imgur.com/2WEhF.png -->
+      <!-- Preloading image -->
       <img id="sprite" src="./assets/spritesheet_4x_3.png"/>
  
       <div id="scoreBoard">
@@ -67,6 +44,6 @@
 
     </div>
 
-    <script src="main.js"></script>
+    <script src="main.js">    </script>
   </body>
 </html>

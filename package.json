@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "prefixfree": "^1.0.0"
+    "axios": "^1.6.8",
+    "express": "^4.19.2",
+    "nodejs": "^0.0.0",
+    "prefixfree": "^1.0.0",
+    "ws": "^8.17.0"
   }
 }
