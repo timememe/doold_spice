@@ -11,6 +11,28 @@ app.get('/start-game', (req, res) => {
 });
 */
 
+
+function sendGameData(userUuid, gameUuid, score, token) {
+  const formData = new FormData();
+  formData.append('user_uuid', userUuid);
+  formData.append('game_uuid', gameUuid);
+  formData.append('score', score);
+  formData.append('token', token);
+
+  fetch('https://enjoytomorrow.ge/system/game-log/', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text()) // Получаем текстовый ответ от сервера
+  .then(data => {
+    console.log('Response:', data); // Ожидаем получить "ok" строку
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+
 // Endpoint для получения результатов игры
 app.post('/submit-results', express.json(), (req, res) => {
   const results = req.body;

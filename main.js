@@ -10,30 +10,54 @@ window.requestAnimFrame = (function() {
          };
 })();
 
-// Получаем URL из iframe
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const uuid = urlParams.get('uuid'); // uuid теперь содержит ваш UUID
-console.log(uuid);
 
-function sendGameData(score) {
-  const data = { uuid: uuid, score: score };
+// После получения UUID из URL
+const userUuid = urlParams.get('uuid');
 
-  fetch('https://enjoytomorrow.ge/game/send_1', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
+function startSession(userUuid) {
+  fetch('start_session.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ user_uuid: userUuid })
   })
   .then(response => response.json())
   .then(data => {
-      console.log('Success:', data);
+    sessionStorage.setItem('gameUuid', data.gameUuid);
+    sessionStorage.setItem('gameStartTime', data.gameStartTime);
   })
-  .catch((error) => {
-      console.error('Error:', error);
+  .catch(error => {
+    console.error('Error starting session:', error);
   });
 }
+
+function sendScore(userUuid, gameUuid, score) {
+  fetch('store_score.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      user_uuid: userUuid,
+      game_uuid: gameUuid,
+      score: score
+    })
+  })
+  .then(response => response.text()) // Ожидаем текстовый ответ "ok"
+  .then(data => {
+    console.log('Score stored:', data);
+  })
+  .catch(error => {
+    console.error('Error storing score:', error);
+  });
+}
+
+startSession(userUuid);
+const gameUuid = sessionStorage.getItem('gameUuid');
 
 let multiply = 4;
 let lastGrassY = 0, lastCloudsY = 0, lastCloudsX = 0, lastFarCloudsY = 0, lastFarCloudsX = 0, lastStageY = 0, lastMountainsY = 0, lastScoreUpdate = -1;
@@ -675,7 +699,7 @@ function init() {
       showGoMenu();
       hideScore();
       player.isDead = "lol";
-      sendGameData(score);
+      sendScore(userUuid, gameUuid, score);
     }
   }
 
