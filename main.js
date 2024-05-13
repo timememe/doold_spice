@@ -44,15 +44,38 @@ function sendScore(userUuid, gameUuid, score) {
     body: JSON.stringify({
       user_uuid: userUuid,
       game_uuid: gameUuid,
-      score: score
+      score: score,
+      final: false  // 
     })
   })
-  .then(response => response.text()) // Ожидаем текстовый ответ "ok"
+  .then(response => response.text()) // 
   .then(data => {
-    console.log('Score stored:', data);
+    console.log('Score validated:', data);
   })
   .catch(error => {
-    console.error('Error storing score:', error);
+    console.error('Error validating score:', error);
+  });
+}
+
+function sendFinal(userUuid, gameUuid, score) {
+  fetch('store_score.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      user_uuid: userUuid,
+      game_uuid: gameUuid,
+      score: score,
+      final: true  // 
+    })
+  })
+  .then(response => response.text()) // 
+  .then(data => {
+    console.log('Final score stored:', data);
+  })
+  .catch(error => {
+    console.error('Error storing final score:', error);
   });
 }
 
@@ -680,6 +703,7 @@ function init() {
   function updateScore() {
     var scoreText = document.getElementById("score");
     scoreText.innerHTML = score;
+    //sendScore(userUuid, gameUuid, score);
   }
 
   function gameOver() {
@@ -696,7 +720,8 @@ function init() {
       showGoMenu();
       hideScore();
       player.isDead = "lol";
-      sendScore(userUuid, gameUuid, score);
+      sendFinal(userUuid, gameUuid, score);
+      //console.log("final:", score);
     }
   }
 
@@ -910,5 +935,12 @@ menuLoop = function() {
   update();
   requestAnimFrame(menuLoop);
 };
+
+setInterval(() => {
+  // Эти значения должны обновляться на основе игрового процесса
+  const currentScore = score; // Замените на функцию получения текущего счета
+  sendScore(userUuid, gameUuid, currentScore);
+  //console.log("interval:", score);
+}, 2000);  // Отправляем данные каждые 2 секунды
 
 menuLoop();

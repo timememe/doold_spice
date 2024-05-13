@@ -1,27 +1,44 @@
 <?php
 header('Content-Type: text/plain');
 
+session_start();
+
 $data = json_decode(file_get_contents("php://input"), true);
 $userUuid = $data['user_uuid'];
 $gameUuid = $data['game_uuid'];
 $score = $data['score'];
-$token = 'Butgug3Queph)';
+$final = $data['final'];
 
-// Отправка данных через cURL на удаленный сервер
-$url = 'https://enjoytomorrow.ge/system/game-log/';
-$postData = http_build_query([
-    'user_uuid' => $userUuid,
-    'game_uuid' => $gameUuid,
-    'score' => $score,
-    'token' => $token
-]);
+// Храним последний промежуточный счет в сессии
+if (!$final) {
+    $_SESSION['last_intermediate_score'] = $score;
+    echo 'continue';
+} else {
+    $lastScore = $_SESSION['last_intermediate_score'] ?? 0;
+    $scoreDifference = abs($score - $lastScore);
 
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$response = curl_exec($ch);
-curl_close($ch);
+    // Проверяем разницу между последним промежуточным счетом и финальным счетом
+    if ($scoreDifference <= 200) {
+        // Это финальный счет, отправляем его на внешний сервер
+        $token = 'Butgug3Queph';
+        $url = 'https://enjoytomorrow.ge/system/game-log/';
+        $postData = http_build_query([
+            'user_uuid' => $userUuid,
+            'game_uuid' => $gameUuid,
+            'score' => $score,
+            'token' => $token
+        ]);
 
-echo $response; // Ожидаем получить "ok"
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        echo $response; // Ожидаем получить "ok"
+    } else {
+        echo "Score manipulation detected"; // Выявлено несоответствие счетов
+    }
+}
 ?>
