@@ -20,11 +20,10 @@ if (!$final) {
     // Проверяем разницу между последним промежуточным счетом и финальным счетом
     if ($scoreDifference <= 200) {
         // Это финальный счет, отправляем его на внешний сервер
-        $token = 'Butgug3Queph';
-        $url = 'https://enjoytomorrow.ge/system/game-log/';
+        $token = '[orlOkjalbof7';
+        $url = 'https://enjoytomorrow.ge/system/store-game-score/';
         $postData = http_build_query([
             'user_uuid' => $userUuid,
-            'game_uuid' => $gameUuid,
             'score' => $score,
             'token' => $token
         ]);
