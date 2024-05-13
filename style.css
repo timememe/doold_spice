@@ -29,27 +29,22 @@ body {
     touch-action: manipulation;
 }
 
-/*
-canvas {
-    display: block;
-    background: linear-gradient(to bottom, #012459, #001322);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 70vh;
-}
-*/
-
 #header {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center; /* Центрирование содержимого */
     padding: 10px;
     box-sizing: border-box;
     align-items: center;
 }
 
 #logo {
-    height: 5vh; /* Высота логотипа */
+    width: 10vh; /* Ширина автоматически на основе высоты */
+    height: 2vh; /* Высота логотипа */
+    background: url('./assets/logo_old.png'); /* Путь к новому логотипу */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #exitButton {
@@ -67,13 +62,16 @@ canvas {
     background: linear-gradient(to bottom, #012459, #001322);
     background-repeat: no-repeat;
     background-size: cover;
-    margin: auto; /* центрирование по горизонтали */
+    margin: 0; /* центрирование по горизонтали */
+    border: 5px solid white;
 }
 
 #controllerContainer {
     display: flex;
     justify-content: space-around;
     width: 100%;
+    margin-top: 1vh; /* Верхний отступ */
+    margin-bottom: 1vh; 
 }
 
 #leftButton, #rightButton {
