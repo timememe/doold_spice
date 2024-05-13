@@ -12,12 +12,20 @@
   </head>
   <body>
     <div class="container">
+      <div id="header">
+        <img src="./assets/logo_old.png" id="logo" alt="Logo">
+        <button id="exitButton">Exit</button>
+      </div>
+    
       <canvas id="canvas">
         Aww, your browser doesn't support HTML5!
       </canvas>
-      <button id="leftButton"></button>
-      <button id="rightButton"></button>
-
+    
+      <div id="controllerContainer">
+        <button id="leftButton"></button>
+        <button id="rightButton"></button>
+      </div>
+    
       <div id="mainMenu" class="popup-container">
         <div class="popup">
           <h1>INSTRUCTION</h1>
@@ -25,7 +33,7 @@
           <button id="playButton" href="javascript:init()">Play</button>
         </div>
       </div> 
-
+    
       <div id="gameOverMenu" class="popup-container">
         <div class="popup">
           <h1>GAME OVER</h1>
@@ -33,17 +41,14 @@
           <a id="resetButton" href="javascript:reset()">Restart</a>
         </div>
       </div>
-
-      <!-- Preloading image -->
-      <img id="sprite" src="./assets/spritesheet_4x_3.png"/>
- 
+    
+      <img id="sprite" src="./assets/spritesheet_4x_3.png" style="display: none;"/>
+    
       <div id="scoreBoard">
         <div id="scoreIcon"></div>
         <p id="score">0</p>
       </div>
-
     </div>
-
     <script src="main.js">    </script>
   </body>
 </html>

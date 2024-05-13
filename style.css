@@ -17,9 +17,13 @@ body {
     touch-action: manipulation;
 }
 
-.container, canvas {
+.container {
+    display: flex;
+    flex-direction: column; /* Элементы располагаются вертикально */
+    align-items: center; /* Выравнивание элементов по центру горизонтально */
+    justify-content: center; /* Выравнивание по центру вертикально */
     width: 100%;
-    height: auto;
+    height: 100vh; /* Занимает полную высоту видимой области */
     position: relative;
     overflow: hidden;
     touch-action: manipulation;
@@ -35,6 +39,25 @@ canvas {
 }
 */
 
+#header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+#logo {
+    height: 5vh; /* Высота логотипа */
+}
+
+#exitButton {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
 canvas {
     width: auto;
     height: 70vh; /* или ваше предпочтительное значение */
@@ -47,15 +70,47 @@ canvas {
     margin: auto; /* центрирование по горизонтали */
 }
 
+#controllerContainer {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#leftButton, #rightButton {
+    width: 15vh;
+    height: 15vh;
+    font-size: 2vh;
+    border: none;
+    background-color: #c5c5c5;
+    opacity: 1;
+    background: url("./assets/button.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-user-select: none; /* Safari и Chrome, включая Android */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+#leftButton {
+    transform: scaleX(-1);
+}
+
 
 @media (orientation: landscape) {
+    .container {
+        flex-direction: row; /* Горизонтальное расположение элементов */
+        justify-content: space-around; /* Распределение элементов по горизонтали */
+    }
+
     canvas {
         height: 100vh;
         width: auto; /* Adjust width for centering */
         margin: auto; /* Centers the canvas horizontally */
     }
 
-    #leftButton, #rightButton {
+    #controllerContainer, #leftButton, #rightButton {
         visibility: hidden;
     }
 }
@@ -63,7 +118,7 @@ canvas {
 #scoreBoard {
     color: white;
     position: absolute;
-    top: 10px;
+    top: 10vh;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -131,38 +186,6 @@ h3 a {color: #5a5816}
 .button:hover, #playButton:hover, #resetButton:hover {
     background-color: white;
     color: black;
-}
-
-#leftButton, #rightButton {
-    position: fixed;
-    bottom: 10vh;
-    width: 15vh;
-    height: 15vh;
-    font-size: 2vh;
-    border: none;
-    background-color: #c5c5c5;
-    opacity: 1;
-    -webkit-user-select: none; /* Safari и Chrome, включая Android */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none;
-}
-
-#leftButton {
-    left: 5vh;
-    background: url("./assets/button.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    transform: scaleX(-1);
-}
-
-#rightButton {
-    right: 5vh;
-    background: url("./assets/button.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .popup-container {
