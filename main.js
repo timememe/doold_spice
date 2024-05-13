@@ -17,6 +17,8 @@ const urlParams = new URLSearchParams(queryString);
 // После получения UUID из URL
 const userUuid = urlParams.get('uuid');
 
+let scoreInterval;
+
 function startSession(userUuid) {
   fetch('start_session.php', {
     method: 'POST',
@@ -416,7 +418,12 @@ function init() {
 
   ////////////////////////////
 
-
+  scoreInterval = setInterval(() => {
+    // Эти значения должны обновляться на основе игрового процесса
+    const currentScore = score; // Замените на функцию получения текущего счета
+    sendScore(userUuid, gameUuid, currentScore);
+    //console.log("interval:", score);
+  }, 2000);  // Отправляем данные каждые 2 секунды
 
   ///////////////////////////
 
@@ -720,6 +727,7 @@ function init() {
       showGoMenu();
       hideScore();
       player.isDead = "lol";
+      clearInterval(scoreInterval);
       sendFinal(userUuid, gameUuid, score);
       //console.log("final:", score);
     }
@@ -935,12 +943,5 @@ menuLoop = function() {
   update();
   requestAnimFrame(menuLoop);
 };
-
-setInterval(() => {
-  // Эти значения должны обновляться на основе игрового процесса
-  const currentScore = score; // Замените на функцию получения текущего счета
-  sendScore(userUuid, gameUuid, currentScore);
-  //console.log("interval:", score);
-}, 2000);  // Отправляем данные каждые 2 секунды
 
 menuLoop();
