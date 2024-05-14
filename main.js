@@ -753,6 +753,12 @@ function init() {
     }
   }
 
+  function checkScoreAndChangeSprite() {
+    if (score > 0 && score % 420 === 0) {
+      Spring.reset(); // Change the sprite every 500 points
+    }
+  }
+
   //Function to update everything
 
   function update() {
@@ -770,6 +776,8 @@ function init() {
     base.draw();
 
     updateScore();
+
+    checkScoreAndChangeSprite();
   }
 
   menuLoop = function(){return;};
@@ -818,7 +826,7 @@ function showGoMenu() {
   menu.style.visibility = "visible";
 
   var scoreText = document.getElementById("go_score");
-  scoreText.innerHTML = "You scored " + score + " points!";
+  scoreText.innerHTML = "თქვენ დააგროვეთ " + score + " ქულა!";
 }
 
 //Hides the game over menu
