@@ -387,8 +387,6 @@ var spring = function() {
   this.reset = function() {
     this.image = images[Math.floor(Math.random() * images.length)]; // Random image on reset
     this.state = 0;
-    this.x = Math.random() * (width - this.width); // New random position
-    this.y = 0 - this.height;
   };
 };
 
@@ -650,7 +648,9 @@ function init() {
     var s = Spring;
     var p = platforms[0];
   
+    // Always reset the spring's sprite when it's repositioned
     if (p.type == 1 || p.type == 2) {
+      
       s.x = p.x + p.width / 2 - s.width / 2;
       s.y = p.y - p.height - 10;
   
@@ -658,13 +658,9 @@ function init() {
   
       s.draw();
     } else {
+      s.reset(); // Reset the sprite to a new random one
       s.x = 0 - s.width;
       s.y = 0 - s.height;
-    }
-  
-    // If spring goes out of the viewport, reset and choose a new sprite sheet
-    if (s.y > height) {
-      s.reset();
     }
   }
 
@@ -753,11 +749,13 @@ function init() {
     }
   }
 
+  /*
   function checkScoreAndChangeSprite() {
     if (score > 0 && score % 420 === 0) {
       Spring.reset(); // Change the sprite every 500 points
     }
   }
+  */
 
   //Function to update everything
 
@@ -777,7 +775,7 @@ function init() {
 
     updateScore();
 
-    checkScoreAndChangeSprite();
+    //checkScoreAndChangeSprite();
   }
 
   menuLoop = function(){return;};
