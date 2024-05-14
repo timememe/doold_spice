@@ -349,6 +349,13 @@ var Platform_broken_substitute = function() {
 
 var platform_broken_substitute = new Platform_broken_substitute();
 
+var images = [
+  document.getElementById("sprite1"),
+  document.getElementById("sprite2"),
+  document.getElementById("sprite3"),
+  document.getElementById("sprite4")
+];
+
 //Spring Class
 var spring = function() {
   this.x = 0;
@@ -357,23 +364,31 @@ var spring = function() {
   this.width = 26;
   this.height = 30;
 
-  //Sprite clipping
+  // Sprite clipping
   this.cx = 0;
   this.cy = 0;
-  this.cwidth = 45 * multiply;
-  this.cheight = 53 * multiply;
+  this.cwidth = 180; // Updated size
+  this.cheight = 212; // Updated size
 
-  this.state = 0; 
+  this.state = 0;
+  this.image = images[Math.floor(Math.random() * images.length)]; // Random image on creation
 
   this.draw = function() {
     try {
-      if (this.state === 0) this.cy = 445 * multiply;
-      else if (this.state == 1) this.cy = 501 * multiply;
+      if (this.state === 0) this.cy = 0;
+      else if (this.state == 1) this.cy = 212;
 
-      ctx.drawImage(image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
+      ctx.drawImage(this.image, this.cx, this.cy, this.cwidth, this.cheight, this.x, this.y, this.width, this.height);
     } catch (e) {
       console.error("Ошибка: ", e);
     }
+  };
+
+  this.reset = function() {
+    this.image = images[Math.floor(Math.random() * images.length)]; // Random image on reset
+    this.state = 0;
+    this.x = Math.random() * (width - this.width); // New random position
+    this.y = 0 - this.height;
   };
 };
 
@@ -634,17 +649,22 @@ function init() {
   function springCalc() {
     var s = Spring;
     var p = platforms[0];
-
+  
     if (p.type == 1 || p.type == 2) {
       s.x = p.x + p.width / 2 - s.width / 2;
       s.y = p.y - p.height - 10;
-
+  
       if (s.y > height / 1.1) s.state = 0;
-
+  
       s.draw();
     } else {
       s.x = 0 - s.width;
       s.y = 0 - s.height;
+    }
+  
+    // If spring goes out of the viewport, reset and choose a new sprite sheet
+    if (s.y > height) {
+      s.reset();
     }
   }
 
@@ -652,30 +672,30 @@ function init() {
 
   function platformCalc() {
     var subs = platform_broken_substitute;
-
+  
     platforms.forEach(function(p, i) {
       if (p.type == 2) {
         if (p.x < 0 || p.x + p.width > width) p.vx *= -1;
-
+  
         p.x += p.vx;
       }
-
+  
       if (p.flag == 1 && subs.appearance === false && jumpCount === 0) {
         subs.x = p.x;
         subs.y = p.y;
         subs.appearance = true;
-
+  
         jumpCount++;
       }
-
+  
       p.draw();
     });
-
+  
     if (subs.appearance === true) {
       subs.draw();
       subs.y += 8;
     }
-
+  
     if (subs.y > height) subs.appearance = false;
   }
 
