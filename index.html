@@ -5,7 +5,6 @@
     <title>OldSpice Jump</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="style.css">
 
     <script src="./node_modules/prefixfree/prefixfree.min.js"></script>
@@ -53,15 +52,5 @@
       </div>
     </div>
     <script src="main.js">    </script>
-    <script>
-      function closeIframe() {
-        // Проверка, находится ли приложение внутри iframe
-        if (window.top !== window.self) {
-          window.top.postMessage('closeIframe', '*');
-        } else {
-          console.log("This page is not in an iframe, cannot close.");
-        }
-      }
-    </script>
   </body>
 </html>
