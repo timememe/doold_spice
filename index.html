@@ -37,7 +37,7 @@
         <div class="popup">
           <h1>GAME OVER</h1>
           <p id="go_score">you scored 0 points</p>
-          <a id="resetButton" href="javascript:reset()">გასვლა</a>
+          <a id="resetButton" href="javascript:closeIframe()">გასვლა</a>
         </div>
       </div>
     
@@ -53,5 +53,15 @@
       </div>
     </div>
     <script src="main.js">    </script>
+    <script>
+      function closeIframe() {
+        // Проверка, находится ли приложение внутри iframe
+        if (window.top !== window.self) {
+          window.top.postMessage('closeIframe', '*');
+        } else {
+          console.log("This page is not in an iframe, cannot close.");
+        }
+      }
+    </script>
   </body>
 </html>

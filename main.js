@@ -100,6 +100,15 @@ function paintCanvas() {
   ctx.clearRect(0, 0, width, height);
 }
 
+function closeIframe() {
+  // Проверка, находится ли приложение внутри iframe
+  if (window.top !== window.self) {
+    window.top.postMessage('closeIframe', '*');
+  } else {
+    console.log("This page is not in an iframe, cannot close.");
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('playButton').addEventListener('click', function() {
     // Скрываем попап при нажатии на 'Play'
@@ -107,9 +116,12 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   document.getElementById('resetButton').addEventListener('click', function() {
-    reset();  // Reset the game
+    //reset();  // Reset the game
+    closeIframe();
   });
 });
+
+
 
 /**/
 window.addEventListener('resize', resizeCanvas, false);
