@@ -116,8 +116,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   document.getElementById('resetButton').addEventListener('click', function() {
-    //reset();  // Reset the game
-    closeIframe();
+    reset();  // Reset the game
+    //closeIframe();
   });
 });
 
