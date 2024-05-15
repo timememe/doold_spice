@@ -117,7 +117,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('resetButton').addEventListener('click', function() {
     reset();  // Reset the game
-    //closeIframe();
+  });
+
+  document.getElementById('closeButton').addEventListener('click', function() {
+    closeIframe();
   });
 });
 
