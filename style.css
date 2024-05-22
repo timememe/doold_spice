@@ -153,7 +153,7 @@ h3 {
 
 h3 a {color: #5a5816}
 
-.button, #playButton, #resetButton, #closeButton {
+.button, #playButton {
     background: transparent;
     color: white;
     border: 2px solid white;
@@ -163,7 +163,17 @@ h3 a {color: #5a5816}
     transition: background-color 0.3s, color 0.3s;
 }
 
-.button:hover, #playButton:hover, #resetButton:hover {
+#resetButton, #closeButton {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    font-size: 1vh;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover, #playButton:hover, #resetButton:hover, #closeButton:hover {
     background-color: white;
     color: black;
 }
@@ -210,6 +220,33 @@ h3 a {color: #5a5816}
     padding: 0 15%; /* Padding to ensure text stays within the background */
 }
 
+.popup_gamover {
+    background: url("./assets/bg_popup.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+    width: 30vh;
+    height: 30vh;
+    max-width: 600px;
+    text-align: center;
+}
+
+.popup_gamover h1 {
+    margin-top: 4.5vh;
+    color: #ffffff;
+    text-align: center;
+    font-size: 2.5vw; /* 30% smaller */
+    padding: 0 10%; /* Padding to ensure text stays within the background */
+}
+
+.popup_gamover p {
+    font-size: 1vw; /* 30% larger */
+    color: #ffffff;
+    text-align: center;
+    padding: 0 15%; /* Padding to ensure text stays within the background */
+}
+
 
 @media (orientation: landscape) {
     .container {
@@ -237,6 +274,21 @@ h3 a {color: #5a5816}
     
     .popup p {
         font-size: 1vw; /* 30% larger */
+        color: #ffffff;
+        text-align: center;
+        padding: 0 15%; /* Padding to ensure text stays within the background */
+    }
+
+    .popup_gamover h1 {
+        margin-top: 4.5vh;
+        color: #ffffff;
+        text-align: center;
+        font-size: 1vw; /* 30% smaller */
+        padding: 0 10%; /* Padding to ensure text stays within the background */
+    }
+    
+    .popup_gamover p {
+        font-size: 0.5vw; /* 30% larger */
         color: #ffffff;
         text-align: center;
         padding: 0 15%; /* Padding to ensure text stays within the background */
