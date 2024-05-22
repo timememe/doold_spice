@@ -226,22 +226,23 @@ h3 a {color: #5a5816}
     background-repeat: no-repeat;
     background-position: center;
     padding: 20px;
-    width: 30vh;
-    height: 30vh;
+    width: 40vh;
+    height: 40vh;
     max-width: 600px;
     text-align: center;
 }
 
 .popup_gamover h1 {
-    margin-top: 4.5vh;
+    margin-top: 6vh;
     color: #ffffff;
-    text-align: center;
+    text-align: center;    
+    margin-top: 10vh;
     font-size: 2.5vw; /* 30% smaller */
     padding: 0 10%; /* Padding to ensure text stays within the background */
 }
 
 .popup_gamover p {
-    font-size: 1vw; /* 30% larger */
+    font-size: 2.5vw; /* 30% larger */
     color: #ffffff;
     text-align: center;
     padding: 0 15%; /* Padding to ensure text stays within the background */
@@ -280,15 +281,16 @@ h3 a {color: #5a5816}
     }
 
     .popup_gamover h1 {
-        margin-top: 4.5vh;
+        margin-top: 6vh;
         color: #ffffff;
         text-align: center;
+        margin-top: 10vh;
         font-size: 1vw; /* 30% smaller */
         padding: 0 10%; /* Padding to ensure text stays within the background */
     }
     
     .popup_gamover p {
-        font-size: 0.5vw; /* 30% larger */
+        font-size: 1vw; /* 30% larger */
         color: #ffffff;
         text-align: center;
         padding: 0 15%; /* Padding to ensure text stays within the background */
