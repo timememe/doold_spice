@@ -236,8 +236,8 @@ h3 a {color: #5a5816}
     margin-top: 6vh;
     color: #ffffff;
     text-align: center;    
-    margin-top: 10vh;
-    font-size: 2.5vw; /* 30% smaller */
+    margin-top: 12vh;
+    font-size: 3.5vw; /* 30% smaller */
     padding: 0 10%; /* Padding to ensure text stays within the background */
 }
 
