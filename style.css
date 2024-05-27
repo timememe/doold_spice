@@ -153,7 +153,7 @@ h3 {
 
 h3 a {color: #5a5816}
 
-.button, #playButton {
+.button, #playButton, #bonusButton {
     background: transparent;
     color: white;
     border: 2px solid white;
@@ -163,7 +163,7 @@ h3 a {color: #5a5816}
     transition: background-color 0.3s, color 0.3s;
 }
 
-#resetButton, #closeButton {
+#resetButton, #closeButton, #bonusButton {
     background: transparent;
     color: white;
     border: 2px solid white;
@@ -173,7 +173,7 @@ h3 a {color: #5a5816}
     transition: background-color 0.3s, color 0.3s;
 }
 
-.button:hover, #playButton:hover, #resetButton:hover, #closeButton:hover {
+.button:hover, #playButton:hover, #resetButton:hover, #closeButton:hover, #bonusButton:hover {
     background-color: white;
     color: black;
 }
@@ -248,6 +248,34 @@ h3 a {color: #5a5816}
     padding: 0 15%; /* Padding to ensure text stays within the background */
 }
 
+.popup_bonus {
+    background: url("./assets/bg_popup.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+    width: 40vh;
+    height: 40vh;
+    max-width: 600px;
+    text-align: center;
+}
+
+.popup_bonus h1 {
+    margin-top: 6vh;
+    color: #ffffff;
+    text-align: center;    
+    margin-top: 10.5vh;
+    font-size: 3.5vw; /* 30% smaller */
+    padding: 0 10%; /* Padding to ensure text stays within the background */
+}
+
+.popup_bonus p {
+    font-size: 2.5vw; /* 30% larger */
+    color: #ffffff;
+    text-align: center;
+    padding: 0 15%; /* Padding to ensure text stays within the background */
+}
+
 
 @media (orientation: landscape) {
     .container {
@@ -290,6 +318,22 @@ h3 a {color: #5a5816}
     }
     
     .popup_gamover p {
+        font-size: 1vw; /* 30% larger */
+        color: #ffffff;
+        text-align: center;
+        padding: 0 15%; /* Padding to ensure text stays within the background */
+    }
+
+    .popup_bonus h1 {
+        margin-top: 6vh;
+        color: #ffffff;
+        text-align: center;
+        margin-top: 10vh;
+        font-size: 1vw; /* 30% smaller */
+        padding: 0 10%; /* Padding to ensure text stays within the background */
+    }
+    
+    .popup_bonus p {
         font-size: 1vw; /* 30% larger */
         color: #ffffff;
         text-align: center;

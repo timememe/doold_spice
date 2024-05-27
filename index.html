@@ -30,17 +30,23 @@
           <p>გამოიყენე  ისრები მარჯვენა და მარცხენა მიმართულებისთვის!</p>
           <button id="playButton" href="javascript:init()">ითამაშე</button>
         </div>
-      </div> 
+      </div>
+
+      <div id="bonusMenu" class="popup-container">
+        <div class="popup_bonus">
+          <p>შეიძინე  „ოლდ სფაისი“, ატვირთე  ქვითრის სურათი და
+            მიიღე დამატებითი 3,000 ქულა.</p>
+          <p>მოიწვიე 1 მეგობარი თამაშში და ყოველ დარეგისტრირებულ მეგობარზე მიიღე დამატებითი 1,000 ქულა.</p>     
+          <button id="resetButton" href="javascript:reset()">ითამაშე</button>
+          <button id="closeButton" href="javascript:closeIframe()">გამოსვლა</button>     
+        </div>
+      </div>
     
       <div id="gameOverMenu" class="popup-container">
         <div class="popup_gamover">
           <h1>GAME OVER</h1>
           <p id="go_score">you scored 0 points</p>
-          <p>შეიძინე  „ოლდ სფაისი“, ატვირთე  ქვითრის სურათი და
-            მიიღე დამატებითი 3,000 ქულა.</p>
-          <p>მოიწვიე 1 მეგობარი თამაშში და ყოველ დარეგისტრირებულ მეგობარზე მიიღე დამატებითი 1,000 ქულა.</p>
-          <button id="resetButton" href="javascript:reset()">ითამაშე</button>
-          <button id="closeButton" href="javascript:closeIframe()">გამოსვლა</button>          
+          <button id="bonusButton" href="javascript:showBonusMenu()">ბონუსი</button> 
         </div>
       </div>
     
@@ -55,6 +61,6 @@
         <p id="score">0</p>
       </div>
     </div>
-    <script src="main.js">    </script>
+    <script src="main.js"></script>
   </body>
 </html>

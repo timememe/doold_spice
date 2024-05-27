@@ -122,6 +122,10 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('closeButton').addEventListener('click', function() {
     closeIframe();
   });
+
+  document.getElementById('bonusButton').addEventListener('click', function() {
+    showBonusMenu();  // Reset the game
+  });
 });
 
 
@@ -806,7 +810,7 @@ function init() {
 }
 
 function reset() {
-  hideGoMenu();
+  hideBonusMenu();
   showScore();
   player.isDead = false;
   
@@ -847,6 +851,19 @@ function hideGoMenu() {
   var menu = document.getElementById("gameOverMenu");
   menu.style.zIndex = -1;
   menu.style.visibility = "hidden";
+}
+
+function showBonusMenu() {
+  hideGoMenu();
+  var menu2 = document.getElementById("bonusMenu");
+  menu2.style.zIndex = 1;
+  menu2.style.visibility = "visible";
+};
+
+function hideBonusMenu() {
+  var menu2 = document.getElementById("bonusMenu");
+  menu2.style.zIndex = -1;
+  menu2.style.visibility = "hidden";
 }
 
 //Show ScoreBoard
